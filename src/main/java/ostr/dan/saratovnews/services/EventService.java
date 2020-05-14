@@ -19,7 +19,7 @@ public class EventService implements RecordService<Event>{
 
     @Override
     public Event getRecord(long id) {
-        return repository.getOne(id);
+        return repository.findById(id).get();
     }
 
     @Override

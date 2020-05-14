@@ -20,7 +20,7 @@ public class PollService implements RecordService<Poll> {
 
     @Override
     public Poll getRecord(long id) {
-        return repository.getOne(id);
+        return repository.findById(id).get();
     }
 
     @Override

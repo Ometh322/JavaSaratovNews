@@ -18,7 +18,7 @@ public class NewsService implements RecordService<News> {
 
     @Override
     public News getRecord(long id) {
-        return repository.getOne(id);
+        return repository.findById(id).get();
     }
 
     @Override
