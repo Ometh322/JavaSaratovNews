@@ -20,22 +20,22 @@ public class PollController {
     }
 
     @GetMapping("/poll/{id}")
-    public Poll getPoll(@PathVariable("id") long id){
+    public Poll getPoll(@PathVariable("id") long id) {
         return pollService.getRecord(id);
     }
 
     @GetMapping("/polls")
-    public List<Poll> getAllPolls(){
+    public List<Poll> getAllPolls() {
         return pollService.getAllRecords();
     }
 
     @PutMapping("/poll/{poll}")
-    public Poll updatePoll(@PathVariable("poll") @RequestBody Poll poll){
+    public Poll updatePoll(@PathVariable("poll") @RequestBody Poll poll) {
         return pollService.updateRecord(poll);
     }
 
     @DeleteMapping("/poll/{id}")
-    public HttpStatus deletePoll(@PathVariable("id") long id){
+    public HttpStatus deletePoll(@PathVariable("id") long id) {
         pollService.deleteRecord(id);
         return HttpStatus.OK;
     }

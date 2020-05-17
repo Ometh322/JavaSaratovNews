@@ -1,10 +1,17 @@
 package ostr.dan.saratovnews.model.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.Entity;
 
 @Builder(toBuilder = true)
 @Data
-public class Event extends Record{
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+public class Event extends Record {
     private long startDate;
 }

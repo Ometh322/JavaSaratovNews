@@ -1,0 +1,459 @@
+swagger: '2.0'
+info:
+  description: This is a API of SaratovNews
+  version: 1.0.0
+  title: Simple API
+  # put the contact info for your development or API team
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+# tags are used for organizing operations
+tags:
+- name: news
+  description: News in news feed
+- name: event
+  description: Event in news feed
+- name: poll
+  description: Poll in news feed
+
+paths:
+  /news:
+    post:
+      tags:
+        - news
+      summary: Adds a new News post
+      operationId: addNews
+      consumes:
+      - application/json
+      - application/xml
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: News object that needs to be added
+        required: true
+        schema:
+          $ref: '#/definitions/News'
+      responses:
+        201:
+          description: Successful creating
+          schema:
+            $ref: '#/definitions/News'
+        405: 
+          description: Invalid Input
+    put:
+      tags:
+        - news
+      summary: Adds new a News post
+      operationId: updateNews
+      consumes:
+      - application/json
+      - application/xml
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: News object that needs to be added
+        required: true
+        schema:
+          $ref: '#/definitions/News'
+      responses:
+        200:
+          description: Successful operation
+        400:
+          description: Invalid ID supplied
+        404:
+          description: News not found
+        405:
+          description: Validation exception
+    get:
+      tags:
+      - news
+      summary: List All News
+      description: Returns the whole News
+      operationId: listNews
+      produces:
+      - application/json
+      - application/xml
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/News'
+        404:
+          description: News not found
+  /news/{newsId}:
+    get:
+      tags:
+      - news
+      summary: Find News by ID
+      description: Returns a single News
+      operationId: getNewsById
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: newsId
+        in: path
+        description: ID of News to return
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/News'
+        400:
+          description: Invalid ID supplied
+        404:
+          description: News not found
+    delete:
+      tags:
+      - news
+      summary: Deletes a News post
+      operationId: deleteNews
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: newsId
+        in: path
+        description: News ID to delete
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: Successful operation
+        400:
+          description: Invalid ID supplied
+        404:
+          description: News not found
+  /event:
+    post:
+      tags:
+        - event
+      summary: Adds a new Event post
+      operationId: addEvent
+      consumes:
+      - application/json
+      - application/xml
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Event object that needs to be added
+        required: true
+        schema:
+          $ref: '#/definitions/Event'
+      responses:
+        201:
+          description: Successful creating
+          schema:
+            $ref: '#/definitions/Event'
+        405: 
+          description: Invalid Input
+    put:
+      tags:
+        - event
+      summary: Adds new a Event post
+      operationId: updateEvent
+      consumes:
+      - application/json
+      - application/xml
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Event object that needs to be added
+        required: true
+        schema:
+          $ref: '#/definitions/Event'
+      responses:
+        200:
+          description: Successful operation
+        400:
+          description: Invalid ID supplied
+        404:
+          description: Event not found
+        405:
+          description: Validation exception
+    get:
+      tags:
+      - event
+      summary: List All Event
+      description: Returns the whole Events
+      operationId: listEvents
+      produces:
+      - application/json
+      - application/xml
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Event'
+        404:
+          description: Events not found
+  /event/{eventId}:
+    get:
+      tags:
+      - event
+      summary: Find Event by ID
+      description: Returns a singleEvent
+      operationId: getEventById
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: eventId
+        in: path
+        description: ID of Event to return
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/Event'
+        400:
+          description: Invalid ID supplied
+        404:
+          description: Event not found
+    delete:
+      tags:
+      - event
+      summary: Deletes a Event post
+      operationId: deleteEvent
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: eventId
+        in: path
+        description: Event ID to delete
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: Successful operation
+        400:
+          description: Invalid ID supplied
+        404:
+          description: Event not found
+  /poll:
+    post:
+      tags:
+        - poll
+      summary: Adds a new Poll post
+      operationId: addPoll
+      consumes:
+      - application/json
+      - application/xml
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Poll object that needs to be added
+        required: true
+        schema:
+          $ref: '#/definitions/Poll'
+      responses:
+        201:
+          description: Successful creating
+          schema:
+            $ref: '#/definitions/Poll'
+        405: 
+          description: Invalid Input
+    put:
+      tags:
+        - poll
+      summary: Adds new a Poll post
+      operationId: updatePoll
+      consumes:
+      - application/json
+      - application/xml
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - in: body
+        name: body
+        description: Poll object that needs to be added
+        required: true
+        schema:
+          $ref: '#/definitions/Poll'
+      responses:
+        200:
+          description: Successful operation
+        400:
+          description: Invalid ID supplied
+        404:
+          description: Poll not found
+        405:
+          description: Validation exception
+    get:
+      tags:
+      - poll
+      summary: List All Polls
+      description: Returns the whole Polls
+      operationId: listPolls
+      produces:
+      - application/json
+      - application/xml
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Poll'
+        404:
+          description: Polls not found
+  /poll/{pollId}:
+    get:
+      tags:
+      - poll
+      summary: Find Poll by ID
+      description: Returns a singlePoll
+      operationId: getPollById
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: pollId
+        in: path
+        description: ID of Poll to return
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/Poll'
+        400:
+          description: Invalid ID supplied
+        404:
+          description: Poll not found
+    delete:
+      tags:
+      - poll
+      summary: Deletes a Poll post
+      operationId: deletePoll
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: pollId
+        in: path
+        description: Poll ID to delete
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: Successful operation
+        400:
+          description: Invalid ID supplied
+        404:
+          description: Poll not found
+definitions:
+  News:
+    type: object
+    allOf:
+      - $ref: '#/definitions/Record'
+  Event:
+    type: object
+    allOf: 
+      - $ref: '#/definitions/Record'
+      - properties:
+          srartDate:
+            type: string
+            format: date-time
+  Poll:
+    type: object
+    allOf: 
+    - $ref: '#/definitions/Record'
+    - properties:
+        answerOptions:
+          type: array
+          items:
+            type: string
+        selectedAnswer:
+          type: integer
+          format: int64
+  Comment:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      creatorId:
+        type: integer
+        format: int64
+      message:
+        type: string
+      publicationDate:
+        type: string
+        format: date-time
+  Record:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      creatorId:
+        type: integer
+        format: int64
+      title:
+        type: string
+      publicationDate:
+        type: string
+        format: date-time
+      description:
+        type: string
+      comments:
+        type: array
+        items:
+          $ref: '#/definitions/Comment'
+      typeOfRecord:
+        type: string
+        enum:
+        - NEWS
+        - EVENT
+        - POLL
+  ApiResponce:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      type:
+        type: string
+      message:
+        type: string
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /Ometh322/SararovNews/1.0.0
+schemes:
+ - https
+ - http
