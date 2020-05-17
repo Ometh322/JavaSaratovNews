@@ -17,10 +17,40 @@ tags:
   description: Event in news feed
 - name: poll
   description: Poll in news feed
-
+- name: newsFeed
+  description: All News Feed
 paths:
+  /newsFeed:
+    get:
+      tags:
+      - newsFeed
+      summary: List of All News, Events, Polls in News Feed
+      operationId: listNewsFeed
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: numberOfObject
+        in: query
+        description: Number of Outputing Objects
+        required: false
+        type: integer
+      - name: startIndex
+        in: query
+        description: Index of First Object, that need to be Outputed
+        required: false
+        type: integer
+      responses:
+        200:
+          description: Successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Record'
+        404:
+          description: News Feed not found
   /news:
-    post:
+    put:
       tags:
         - news
       summary: Adds a new News post
@@ -45,33 +75,6 @@ paths:
             $ref: '#/definitions/News'
         405: 
           description: Invalid Input
-    put:
-      tags:
-        - news
-      summary: Adds new a News post
-      operationId: updateNews
-      consumes:
-      - application/json
-      - application/xml
-      produces:
-      - application/json
-      - application/xml
-      parameters:
-      - in: body
-        name: body
-        description: News object that needs to be added
-        required: true
-        schema:
-          $ref: '#/definitions/News'
-      responses:
-        200:
-          description: Successful operation
-        400:
-          description: Invalid ID supplied
-        404:
-          description: News not found
-        405:
-          description: Validation exception
     get:
       tags:
       - news
@@ -91,6 +94,33 @@ paths:
         404:
           description: News not found
   /news/{newsId}:
+    post:
+      tags:
+        - news
+      summary: Update news by ID
+      operationId: updateNews
+      consumes:
+      - application/json
+      - application/xml
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: newsId
+        in: path
+        description: ID of News that need to be updated
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: Successful operation
+        400:
+          description: Invalid ID supplied
+        404:
+          description: News not found
+        405:
+          description: Validation exception
     get:
       tags:
       - news
@@ -139,7 +169,7 @@ paths:
         404:
           description: News not found
   /event:
-    post:
+    put:
       tags:
         - event
       summary: Adds a new Event post
@@ -164,33 +194,6 @@ paths:
             $ref: '#/definitions/Event'
         405: 
           description: Invalid Input
-    put:
-      tags:
-        - event
-      summary: Adds new a Event post
-      operationId: updateEvent
-      consumes:
-      - application/json
-      - application/xml
-      produces:
-      - application/json
-      - application/xml
-      parameters:
-      - in: body
-        name: body
-        description: Event object that needs to be added
-        required: true
-        schema:
-          $ref: '#/definitions/Event'
-      responses:
-        200:
-          description: Successful operation
-        400:
-          description: Invalid ID supplied
-        404:
-          description: Event not found
-        405:
-          description: Validation exception
     get:
       tags:
       - event
@@ -210,6 +213,33 @@ paths:
         404:
           description: Events not found
   /event/{eventId}:
+    post:
+      tags:
+        - event
+      summary: Update event by ID
+      operationId: updateEvent
+      consumes:
+      - application/json
+      - application/xml
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: eventId
+        in: path
+        description: ID of Event that need to be updated
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: Successful operation
+        400:
+          description: Invalid ID supplied
+        404:
+          description: Event not found
+        405:
+          description: Validation exception
     get:
       tags:
       - event
@@ -258,7 +288,7 @@ paths:
         404:
           description: Event not found
   /poll:
-    post:
+    put:
       tags:
         - poll
       summary: Adds a new Poll post
@@ -283,33 +313,6 @@ paths:
             $ref: '#/definitions/Poll'
         405: 
           description: Invalid Input
-    put:
-      tags:
-        - poll
-      summary: Adds new a Poll post
-      operationId: updatePoll
-      consumes:
-      - application/json
-      - application/xml
-      produces:
-      - application/json
-      - application/xml
-      parameters:
-      - in: body
-        name: body
-        description: Poll object that needs to be added
-        required: true
-        schema:
-          $ref: '#/definitions/Poll'
-      responses:
-        200:
-          description: Successful operation
-        400:
-          description: Invalid ID supplied
-        404:
-          description: Poll not found
-        405:
-          description: Validation exception
     get:
       tags:
       - poll
@@ -329,6 +332,33 @@ paths:
         404:
           description: Polls not found
   /poll/{pollId}:
+    post:
+      tags:
+        - poll
+      summary: Update poll by ID
+      operationId: updatePoll
+      consumes:
+      - application/json
+      - application/xml
+      produces:
+      - application/json
+      - application/xml
+      parameters:
+      - name: pollId
+        in: path
+        description: ID of Poll that need to be updated
+        required: true
+        type: integer
+        format: int64
+      responses:
+        200:
+          description: Successful operation
+        400:
+          description: Invalid ID supplied
+        404:
+          description: Poll not found
+        405:
+          description: Validation exception
     get:
       tags:
       - poll
@@ -415,6 +445,9 @@ definitions:
       publicationDate:
         type: string
         format: date-time
+      numberOfLikes:
+        type: integer
+        format: int32
   Record:
     type: object
     properties:
@@ -431,6 +464,12 @@ definitions:
         format: date-time
       description:
         type: string
+      numberOfComments:
+        type: integer
+        format: int32
+      numberOfLikes:
+        type: integer
+        format: int32
       comments:
         type: array
         items:
