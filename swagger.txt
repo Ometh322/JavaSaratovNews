@@ -13,10 +13,10 @@ info:
 tags:
 - name: news
   description: News in news feed
-- name: event
-  description: Event in news feed
-- name: poll
-  description: Poll in news feed
+- name: events
+  description: Events in news feed
+- name: polls
+  description: Polls in news feed
 - name: newsFeed
   description: All News Feed
 paths:
@@ -93,7 +93,7 @@ paths:
               $ref: '#/definitions/News'
         404:
           description: News not found
-  /news/{newsId}:
+  /news/{id}:
     post:
       tags:
         - news
@@ -106,12 +106,18 @@ paths:
       - application/json
       - application/xml
       parameters:
-      - name: newsId
+      - name: id
         in: path
         description: ID of News that need to be updated
         required: true
         type: integer
         format: int64
+      - in: body
+        name: body
+        description: News object that needs to be updated
+        required: true
+        schema:
+          $ref: '#/definitions/News'
       responses:
         200:
           description: Successful operation
@@ -131,7 +137,7 @@ paths:
       - application/json
       - application/xml
       parameters:
-      - name: newsId
+      - name: id
         in: path
         description: ID of News to return
         required: true
@@ -155,7 +161,7 @@ paths:
       - application/json
       - application/xml
       parameters:
-      - name: newsId
+      - name: id
         in: path
         description: News ID to delete
         required: true
@@ -168,11 +174,11 @@ paths:
           description: Invalid ID supplied
         404:
           description: News not found
-  /event:
+  /events:
     put:
       tags:
-        - event
-      summary: Adds a new Event post
+        - events
+      summary: Adds a new Events post
       operationId: addEvent
       consumes:
       - application/json
@@ -183,21 +189,21 @@ paths:
       parameters:
       - in: body
         name: body
-        description: Event object that needs to be added
+        description: Events object that needs to be added
         required: true
         schema:
-          $ref: '#/definitions/Event'
+          $ref: '#/definitions/Events'
       responses:
         201:
           description: Successful creating
           schema:
-            $ref: '#/definitions/Event'
+            $ref: '#/definitions/Events'
         405: 
           description: Invalid Input
     get:
       tags:
-      - event
-      summary: List All Event
+      - events
+      summary: List All Events
       description: Returns the whole Events
       operationId: listEvents
       produces:
@@ -209,15 +215,15 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Event'
+              $ref: '#/definitions/Events'
         404:
           description: Events not found
-  /event/{eventId}:
+  /events/{id}:
     post:
       tags:
-        - event
-      summary: Update event by ID
-      operationId: updateEvent
+        - events
+      summary: Update events by ID
+      operationId: updateEvents
       consumes:
       - application/json
       - application/xml
@@ -225,12 +231,18 @@ paths:
       - application/json
       - application/xml
       parameters:
-      - name: eventId
+      - name: id
         in: path
-        description: ID of Event that need to be updated
+        description: ID of Events that need to be updated
         required: true
         type: integer
         format: int64
+      - in: body
+        name: body
+        description: Events object that needs to be updated
+        required: true
+        schema:
+          $ref: '#/definitions/Events'
       responses:
         200:
           description: Successful operation
@@ -242,7 +254,7 @@ paths:
           description: Validation exception
     get:
       tags:
-      - event
+      - events
       summary: Find Event by ID
       description: Returns a singleEvent
       operationId: getEventById
@@ -250,7 +262,7 @@ paths:
       - application/json
       - application/xml
       parameters:
-      - name: eventId
+      - name: id
         in: path
         description: ID of Event to return
         required: true
@@ -260,21 +272,21 @@ paths:
         200:
           description: Successful operation
           schema:
-            $ref: '#/definitions/Event'
+            $ref: '#/definitions/Events'
         400:
           description: Invalid ID supplied
         404:
           description: Event not found
     delete:
       tags:
-      - event
+      - events
       summary: Deletes a Event post
       operationId: deleteEvent
       produces:
       - application/json
       - application/xml
       parameters:
-      - name: eventId
+      - name: id
         in: path
         description: Event ID to delete
         required: true
@@ -287,10 +299,10 @@ paths:
           description: Invalid ID supplied
         404:
           description: Event not found
-  /poll:
+  /polls:
     put:
       tags:
-        - poll
+        - polls
       summary: Adds a new Poll post
       operationId: addPoll
       consumes:
@@ -305,17 +317,17 @@ paths:
         description: Poll object that needs to be added
         required: true
         schema:
-          $ref: '#/definitions/Poll'
+          $ref: '#/definitions/Polls'
       responses:
         201:
           description: Successful creating
           schema:
-            $ref: '#/definitions/Poll'
+            $ref: '#/definitions/Polls'
         405: 
           description: Invalid Input
     get:
       tags:
-      - poll
+      - polls
       summary: List All Polls
       description: Returns the whole Polls
       operationId: listPolls
@@ -328,13 +340,13 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Poll'
+              $ref: '#/definitions/Polls'
         404:
           description: Polls not found
-  /poll/{pollId}:
+  /polls/{id}:
     post:
       tags:
-        - poll
+        - polls
       summary: Update poll by ID
       operationId: updatePoll
       consumes:
@@ -344,12 +356,18 @@ paths:
       - application/json
       - application/xml
       parameters:
-      - name: pollId
+      - name: id
         in: path
         description: ID of Poll that need to be updated
         required: true
         type: integer
         format: int64
+      - in: body
+        name: body
+        description: Polls object that needs to be updated
+        required: true
+        schema:
+          $ref: '#/definitions/Polls'
       responses:
         200:
           description: Successful operation
@@ -361,7 +379,7 @@ paths:
           description: Validation exception
     get:
       tags:
-      - poll
+      - polls
       summary: Find Poll by ID
       description: Returns a singlePoll
       operationId: getPollById
@@ -369,7 +387,7 @@ paths:
       - application/json
       - application/xml
       parameters:
-      - name: pollId
+      - name: id
         in: path
         description: ID of Poll to return
         required: true
@@ -379,21 +397,21 @@ paths:
         200:
           description: Successful operation
           schema:
-            $ref: '#/definitions/Poll'
+            $ref: '#/definitions/Polls'
         400:
           description: Invalid ID supplied
         404:
           description: Poll not found
     delete:
       tags:
-      - poll
+      - polls
       summary: Deletes a Poll post
       operationId: deletePoll
       produces:
       - application/json
       - application/xml
       parameters:
-      - name: pollId
+      - name: id
         in: path
         description: Poll ID to delete
         required: true
@@ -411,7 +429,7 @@ definitions:
     type: object
     allOf:
       - $ref: '#/definitions/Record'
-  Event:
+  Events:
     type: object
     allOf: 
       - $ref: '#/definitions/Record'
@@ -419,7 +437,7 @@ definitions:
           srartDate:
             type: string
             format: date-time
-  Poll:
+  Polls:
     type: object
     allOf: 
     - $ref: '#/definitions/Record'
@@ -431,7 +449,7 @@ definitions:
         selectedAnswer:
           type: integer
           format: int64
-  Comment:
+  Comments:
     type: object
     properties:
       id:
@@ -473,7 +491,7 @@ definitions:
       comments:
         type: array
         items:
-          $ref: '#/definitions/Comment'
+          $ref: '#/definitions/Comments'
       typeOfRecord:
         type: string
         enum:
