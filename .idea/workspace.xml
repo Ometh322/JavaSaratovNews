@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b98b4d9d-cd4b-485a-b14a-0cb6e553b013" name="Default Changelist" comment="" />
+    <list default="true" id="d5ebd224-9503-4887-a4cc-78326ba2f53a" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectId" id="1c5fcxrGAeiAjS91E9wNpBRLp0E" />
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1cGhVUsRtjzVYue9wCCjpaXJDkZ" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -33,12 +40,13 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b98b4d9d-cd4b-485a-b14a-0cb6e553b013" name="Default Changelist" comment="" />
-      <created>1589823457642</created>
+      <changelist id="d5ebd224-9503-4887-a4cc-78326ba2f53a" name="Default Changelist" comment="" />
+      <created>1590160860370</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1589823457642</updated>
-      <workItem from="1589823463298" duration="1375000" />
+      <updated>1590160860370</updated>
+      <workItem from="1590160866408" duration="1346000" />
+      <workItem from="1590162579992" duration="836000" />
     </task>
     <servers />
   </component>
@@ -46,13 +54,9 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1589823475965">
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1590162580201">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1589823475965" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1589823463749">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1589823463749" />
+    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590162580201" />
   </component>
 </project>
